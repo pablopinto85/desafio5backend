@@ -1,8 +1,8 @@
 const express = require('express');
 const session = require("express-session")
 const handlebars = require("express-handlebars")
-const sessionRouter = require("./routes/sessions")
-const viewsRouter = require("./routes/views")
+const sessionRouter = require("../routes/sessions.js")
+const viewsRouter = require("../routes/views.js")
 const MongoStore = require("connect-mongo")
 const path = require ("path")
 
@@ -29,6 +29,9 @@ app.set("view engine", "handlebars");
 
 app.use("/api/sessions", sessionRouter)
 app.use("/", viewsRouter)
+app.use ("/login", sessionRouter)
+app.use ("/register", sessionRouter)
+app.use ("/profile", viewsRouter)
 
 
-app.listen(port, () => console.log(`EServidor escuchando en el puerto ${port}!`));
+app.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`));
