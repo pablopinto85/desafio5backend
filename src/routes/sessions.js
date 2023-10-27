@@ -9,11 +9,13 @@ router.post("/register", async (req, res) => {
         const user = new User({ first_name, last_name, email, age, password })
         await user.save
 
-        res.redirect("/login")
+        
 
     } catch (error) {
         res.status(500).send("Error de registro")
     }
+    console.log("Ruta /register alcanzada en sessions.routes.js");
+
 })
 
 module.exports = router
