@@ -31,7 +31,7 @@ app.use("/api/sessions", sessionRouter)
 app.use("/", viewsRouter)
 app.use ("/login", sessionRouter)
 app.use ("/register", sessionRouter)
-app.use ("/profile", viewsRouter)
+app.use ("/products", viewsRouter)
 
 
 app.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`));

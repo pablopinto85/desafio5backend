@@ -2,20 +2,19 @@ const express = require("express")
 const router = express.Router()
 const User = require("../models/user.js")
 
-router.post("/register", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
-        const { first_name, last_name, email, age, password } = req.body
-
-        const user = new User({ first_name, last_name, email, age, password })
-        await user.save
-      
-        
-
+        const { email, password } = req.body;
+        const user = await User.findOne({ email, password }); 
+        if (user) {
+            req.session.user = user; 
+            res.redirect("/products"); 
+        } else {
+            res.redirect("/login"); 
+        }
     } catch (error) {
-        res.status(500).send("Error de registro")
+        res.status(500).send("Error de inicio de sesión");
     }
-   
-
-})
+});
 
 module.exports = router
